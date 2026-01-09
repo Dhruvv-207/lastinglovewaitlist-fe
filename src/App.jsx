@@ -19,7 +19,8 @@ const App = () => {
   useEffect(() => {
     const fetchCount = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/waitlist/count');
+        const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+        const res = await axios.get(`${baseUrl}/api/waitlist/count`);
         setCount(res.data.count);
       } catch (err) {
         setCount(124); // Fallback static count
