@@ -50,7 +50,7 @@ const WaitlistForm = ({ status, message, onStatusChange }) => {
                         {status === 'loading' ? 'Securing your spot...' : 'Secure Early Access'}
                     </button>
                     <p className="privacy-note">
-                        <Shield size={12} /> Your legacy is private. No spam, ever.
+                        <Shield size={14} strokeWidth={2.5} className="privacy-icon" /> Your legacy is private. No spam, ever.
                     </p>
                     {status === 'error' && <p className="error-message">{message}</p>}
                 </form>

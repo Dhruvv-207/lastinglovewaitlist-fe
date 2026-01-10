@@ -147,7 +147,7 @@ input:focus {
 
 /* Navbar */
 .navbar {
-  padding: 2rem 0;
+  padding: 0.5rem 0 1rem;
   position: absolute;
   width: 100%;
   top: 0;
@@ -164,17 +164,20 @@ input:focus {
   display: flex;
   align-items: center;
   gap: 1.25rem;
+  margin-top: -50px;
+  /* Compensation for asset internal padding */
 }
 
 .navbar-logo-img {
-  height: 32px;
+  height: 42px;
   width: auto;
 }
 
 .navbar-logo-text-img {
-  height: 42px;
+  height: 230px;
   width: auto;
-  margin-top: 4px;
+  margin-left: -20px;
+  /* Providing more breathing room between icon and text */
 }
 
 /* Sections Common */
@@ -221,6 +224,7 @@ section {
   font-size: clamp(1.1rem, 2vw, 1.25rem);
   color: var(--text-muted);
   margin-bottom: 3.5rem;
+  text-align: justify;
 }
 
 .waitlist-card {
@@ -236,13 +240,22 @@ section {
 }
 
 .privacy-note {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--text-dim);
-  text-align: center;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 0.5rem;
+  margin-top: 0.75rem;
+  opacity: 0.8;
+  max-width: 260px;
+  margin-inline: auto;
+  line-height: 1.4;
+}
+
+.privacy-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
 .hero-visual {
@@ -307,6 +320,7 @@ section {
   font-size: 1.2rem;
   color: var(--text-muted);
   margin-bottom: 3.5rem;
+  text-align: justify;
 }
 
 .stat-grid {
@@ -319,6 +333,7 @@ section {
   font-size: clamp(2.2rem, 4vw, 3rem);
   margin-bottom: 0.5rem;
   color: var(--primary);
+  white-space: nowrap;
 }
 
 .stat-item p {
@@ -453,15 +468,17 @@ section {
 
 /* Footer Section */
 .footer {
-  padding: 5rem 0;
-  border-top: 1px solid var(--border);
+  padding: 4rem 1.5rem 6rem;
   text-align: center;
   color: var(--text-dim);
+  position: relative;
+  z-index: 10;
 }
 
 .copyright {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 500;
+  line-height: 1.6;
 }
 
 /* ==========================================================================
@@ -564,17 +581,23 @@ section {
   }
 
   .hero-section {
-    padding-top: 3rem;
+    padding-top: 2rem;
   }
 
   .hero-title {
-    font-size: 2.3rem;
-    line-height: 1.1;
+    font-size: clamp(1.8rem, 8vw, 2.3rem);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
   }
 
   .hero-desc {
-    font-size: 1.05rem;
-    margin-bottom: 2.5rem;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    text-align: justify;
+    text-align-last: left;
+    hyphens: auto;
+    word-break: break-word;
+    line-height: 1.6;
   }
 
   /* Form & Input Responsiveness */
@@ -618,13 +641,16 @@ section {
   }
 
   .cta-title {
-    font-size: 1.8rem !important;
+    font-size: clamp(1.6rem, 7vw, 2rem) !important;
   }
 
   .cta-desc {
-    font-size: 1.1rem !important;
-    margin-bottom: 2.5rem !important;
-    padding: 0 0.5rem;
+    font-size: 1rem !important;
+    margin-bottom: 2rem !important;
+    padding: 0;
+    text-align: justify;
+    text-align-last: center;
+    hyphens: auto;
   }
 
   .stat-grid,
@@ -645,27 +671,47 @@ section {
   }
 }
 
-/* Small Phones */
-@media (max-width: 480px) {
+/* Small Phones (320px - 375px) */
+@media (max-width: 400px) {
   .hero-title {
-    font-size: 2.1rem;
+    font-size: 1.8rem;
   }
 
   .hero-desc {
-    font-size: 1.05rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
   }
 
-  .btn-main {
-    width: 100%;
-    padding: 1rem;
-  }
-
-  .navbar-logo-group {
-    gap: 0.75rem;
+  .glass-card {
+    padding: 2rem 1.25rem !important;
   }
 
   .navbar-logo-text-img {
-    height: 28px;
+    height: 110px;
+  }
+
+  .founder-badge {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .stat-number {
+    font-size: 2.2rem !important;
+  }
+
+  .stat-label {
+    font-size: 0.85rem !important;
+  }
+}
+
+/* Medium/Large Phones (Samsung S23, iPhone Pro Max) */
+@media (min-width: 401px) and (max-width: 600px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .navbar-logo-text-img {
+    height: 130px;
   }
 }
 
