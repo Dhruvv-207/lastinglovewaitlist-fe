@@ -1,7 +1,7 @@
 import React from 'react';
 import WaitlistForm from '../components/WaitlistForm';
 
-const CTA = () => {
+const CTA = ({ waitlistStatus, waitlistMessage, onWaitlistSubmit }) => {
     return (
         <section className="cta-section">
             <div className="container">
@@ -13,7 +13,11 @@ const CTA = () => {
                     </p>
 
                     <div className="cta-form-wrapper">
-                        <WaitlistForm />
+                        <WaitlistForm
+                            status={waitlistStatus}
+                            message={waitlistMessage}
+                            onStatusChange={onWaitlistSubmit}
+                        />
                     </div>
                 </div>
             </div>

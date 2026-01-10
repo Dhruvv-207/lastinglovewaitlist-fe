@@ -3,21 +3,18 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, Shield } from 'lucide-react';
 import axios from 'axios';
 
-const WaitlistForm = () => {
+const WaitlistForm = ({ status, message, onStatusChange }) => {
     const [email, setEmail] = useState('');
-    const [status, setStatus] = useState('idle'); // idle, loading, success, error
-    const [message, setMessage] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setStatus('loading');
+        onStatusChange('loading');
         try {
             const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
             await axios.post(`${baseUrl}/api/waitlist/join`, { email });
-            setStatus('success');
+            onStatusChange('success');
         } catch (err) {
-            setStatus('error');
-            setMessage(err.response?.data?.message || "Something went wrong. Please try again.");
+            onStatusChange('error', err.response?.data?.message || "Something went wrong. Please try again.");
         }
     };
 

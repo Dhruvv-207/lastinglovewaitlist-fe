@@ -3,7 +3,7 @@ import { Star } from 'lucide-react';
 import WaitlistForm from '../components/WaitlistForm';
 import jamiePic from '../assets/jamie.jpg';
 
-const Hero = ({ count }) => {
+const Hero = ({ count, waitlistStatus, waitlistMessage, onWaitlistSubmit }) => {
     return (
         <section className="hero-section">
             <div className="container">
@@ -25,7 +25,11 @@ const Hero = ({ count }) => {
                         </p>
 
                         <div className="waitlist-card glass-card">
-                            <WaitlistForm />
+                            <WaitlistForm
+                                status={waitlistStatus}
+                                message={waitlistMessage}
+                                onStatusChange={onWaitlistSubmit}
+                            />
                         </div>
                     </div>
 

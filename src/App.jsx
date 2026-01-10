@@ -15,14 +15,15 @@ import CTA from './sections/CTA';
 
 const App = () => {
   const [count, setCount] = useState(0);
+  const [waitlistStatus, setWaitlistStatus] = useState('idle');
+  const [waitlistMessage, setWaitlistMessage] = useState('');
 
   useEffect(() => {
     const fetchCount = async () => {
       try {
         const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
-        console.log(baseUrl);
         const res = await axios.get(`${baseUrl}/api/waitlist/count`);
-        setCount(res.data.count);
+        setCount(100 + res.data.count); // Start from 100 + DB count
       } catch (err) {
         setCount(124); // Fallback static count
       }
@@ -30,15 +31,32 @@ const App = () => {
     fetchCount();
   }, []);
 
+  const handleWaitlistSubmit = (status, msg = '') => {
+    setWaitlistStatus(status);
+    setWaitlistMessage(msg);
+    if (status === 'success') {
+      setCount(prev => prev + 1);
+    }
+  };
+
   return (
     <div className="landing-page">
       <Navbar />
       <main>
-        <Hero count={count} />
+        <Hero
+          count={count}
+          waitlistStatus={waitlistStatus}
+          waitlistMessage={waitlistMessage}
+          onWaitlistSubmit={handleWaitlistSubmit}
+        />
         <Mission />
         <HowItWorks />
         <Features />
-        <CTA />
+        <CTA
+          waitlistStatus={waitlistStatus}
+          waitlistMessage={waitlistMessage}
+          onWaitlistSubmit={handleWaitlistSubmit}
+        />
       </main>
       <Footer />
     </div>
