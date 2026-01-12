@@ -39,7 +39,7 @@ const WaitlistForm = ({ status, message, onStatusChange }) => {
                     <div className="input-wrapper">
                         <input
                             type="email"
-                            placeholder="Enter your email for early access..."
+                            placeholder="Enter your email..."
                             required
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}

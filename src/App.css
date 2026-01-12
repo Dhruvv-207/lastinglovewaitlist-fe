@@ -261,31 +261,98 @@ section {
 .hero-visual {
   display: flex;
   justify-content: flex-end;
+  perspective: 2000px;
+  position: relative;
+}
+
+.memory-card-container {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  transform-style: preserve-3d;
 }
 
 .memory-card {
   padding: 1.5rem;
-  transform: rotate(2deg);
   width: 100%;
-  max-width: 440px;
+  position: relative;
+  transform-style: preserve-3d;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  overflow: visible;
+}
+
+.memory-inner {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+  transform: translateZ(50px);
 }
 
 .memory-img {
   width: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  display: block;
+}
+
+.gloss-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(255, 255, 255, 0.4) 0%,
+      transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.memory-card:hover .gloss-overlay {
+  opacity: 1;
+}
+
+.spirit-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  z-index: -1;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.orb-1 {
+  width: 150px;
+  height: 150px;
+  background: var(--primary);
+  top: -20px;
+  right: -20px;
+}
+
+.orb-2 {
+  width: 120px;
+  height: 120px;
+  background: #60a5fa;
+  bottom: 20px;
+  left: -30px;
 }
 
 .memory-caption {
   margin-top: 1.5rem;
   text-align: center;
+  transform: translateZ(30px);
 }
 
 .memory-caption p {
   font-size: clamp(1.4rem, 3vw, 1.8rem);
   line-height: 1;
+  display: flex;
+  justify-content: center;
+  gap: 1px;
 }
 
 /* Mission Section */
@@ -701,6 +768,17 @@ section {
 
   .stat-label {
     font-size: 0.85rem !important;
+  }
+
+  /* Fix for cutting input on 320px devices */
+  .waitlist-form input {
+    font-size: 0.9rem !important;
+    padding: 1rem 1.2rem !important;
+  }
+
+  .btn-main {
+    padding: 1rem !important;
+    font-size: 1rem !important;
   }
 }
 
