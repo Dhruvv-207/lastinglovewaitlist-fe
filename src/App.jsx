@@ -21,8 +21,14 @@ const App = () => {
   useEffect(() => {
     const fetchCount = async () => {
       try {
-        const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+        let baseUrl = import.meta.env.VITE_API_BASE_URL;
+        if (baseUrl && !baseUrl.startsWith('http')) {
+          baseUrl = `https://${baseUrl}`;
+        }
+        console.log("Fetching count from", baseUrl);
         const res = await axios.get(`${baseUrl}/api/waitlist/count`);
+        console.log("Fetching count from", baseUrl);
+
         setCount(100 + res.data.count); // Start from 100 + DB count
       } catch (err) {
         setCount(124); // Fallback static count
